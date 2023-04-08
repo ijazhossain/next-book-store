@@ -1,10 +1,14 @@
 import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigation } from 'react-router-dom';
 import Book from './Book';
+import LoadingSpinner from './LoadingSpinner';
 
 const Books = () => {
     const { books } = useLoaderData()
-    // console.log(books)
+    const navigation = useNavigation()
+    if(navigation.state === 'loading'){
+        return <LoadingSpinner/>
+    }
     return (
         <div className=' w-[80%] mx-auto grid md:grid-cols-2 lg:grid-cols-4 gap-5 mt-[80px]'>
             {
